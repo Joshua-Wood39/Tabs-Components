@@ -1,3 +1,23 @@
+class Tabs {
+    constructor(element) {
+        this.element = element;
+        this.tabObject = new TabLink(this.element);
+        element.addEventListener('wheel', () => this.deselect());
+    }
+
+    // Methods
+    deselect() {
+        if (this.element.classList.contains('tabs-link-selected' || this.element.classList.contains('tabs-item-selected'))) {
+            const links = document.getElementsByClassName('tabs-link');
+            const items = document.querySelectorAll('.tabs-item');
+            Array.from(links).forEach(element => element.classList.remove('tabs-link-selected'));
+            Array.from(items).forEach(element => element.classList.remove('tabs-item-selected'));
+
+        }
+    }
+}
+
+
 
 class TabLink {
   constructor(element) {
@@ -65,5 +85,9 @@ class TabItem {
 - In your .forEach() method's callback function, return a new instance of TabLink and pass in each link as a parameter
 */
 
-let links = document.querySelectorAll('.tabs-link');
-links.forEach(link => new TabLink(link));
+// let links = document.querySelectorAll('.tabs-link');
+// links.forEach(link => new TabLink(link));
+
+let tabs = document.querySelectorAll('.tabs-link');
+console.log(tabs);
+tabs.forEach(element => new Tabs(element));
